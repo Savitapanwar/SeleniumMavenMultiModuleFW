@@ -1,0 +1,62 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Logs
+*.log
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Java
+*.class
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Test Reports
+test-output/
+surefire-reports/
+cucumber-reports/
+allure-results/
+allure-report/
+extent-report/
+
+# Screenshots
+screenshots/
+failed_screenshots/
+
+# Generated files
+generated/
+target/generated-test-sources/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Driver executables
+drivers/
+*.exe
+
+# Environment/config
+.env
+
+# Node modules (if any UI/report tools use Node)
+node_modules//target/
