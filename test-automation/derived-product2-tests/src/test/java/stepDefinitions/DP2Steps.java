@@ -10,7 +10,9 @@ import base.DriverFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 import pages.DP2HomePage;
+import utils.WaitUtil;
 
 public class DP2Steps {
 
@@ -25,8 +27,9 @@ public class DP2Steps {
 	public void i_am_on_the_dp2_home_page() {
 
 		dp2HomePage = new DP2HomePage(driver);
-
 		dp2HomePage.navigateToDP1Homepage();
+		WaitUtil.waitForTitleContains(driver,"Chicago Bulls");
+
 	}
 
 	@When("I scroll down to the footer of the DP2 home page and get all the links present in the footer section")

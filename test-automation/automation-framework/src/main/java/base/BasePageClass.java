@@ -10,7 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+
+import org.testng.Assert;
 import utils.ConfigReader;
+import utils.ScreenshotUtil;
 import utils.WaitUtil;
 
 public class BasePageClass {
@@ -34,38 +37,29 @@ public class BasePageClass {
 		return WaitUtil.waitForAllElementsVisibility(driver, locator);
 	}
 	public void navigateTo(String url) {
-		try {
+
 			driver.get(ConfigReader.getProperty(url));
-		} catch (Exception e) {
-			System.out.println("Error navigating to URL: " + e.getMessage());
-		}
+
 	}
 	
 	public void clickElement(By locator) {
 
-		try {
+
 			WaitUtil.waitForClickable(driver, locator).click();
-		}
-		catch(Exception e) {
-			System.out.println("Error clicking element: " + e.getMessage());
-		}
+
+
 	}
 
 	public void enterText(By locator, String text) {
-		try {
-			driver.findElement(locator).sendKeys(text);
-		} catch (Exception e) {
-			System.out.println("Error entering text: " + e.getMessage());
-		}
+
+			findElement(locator).sendKeys(text);
+
 	}
 
 	public String getElementText(By locator) {
-		try {
-			return driver.findElement(locator).getText();
-		} catch (Exception e) {
-			System.out.println("Error getting element text: " + e.getMessage());
-			return null;
-		}
+
+			return findElement(locator).getText();
+
 	}
 	
 	public void mouseHover(By locator) {
@@ -91,7 +85,7 @@ public class BasePageClass {
 			// Hover on sub menu and click
 			actions.moveToElement(clickElement).click().build().perform();
 		} catch (Exception e) {
-			System.out.println("Error performing mouse hover and click: " + e.getMessage());
+			Assert.fail("Mouse hover failed" + hoverLocator+ clickLocator);
 		}
 	}
 

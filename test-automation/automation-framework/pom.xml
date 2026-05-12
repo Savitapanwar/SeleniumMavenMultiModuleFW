@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<scope>test</scope>
+
 		</dependency>
 
 		<!-- Source:
@@ -31,11 +31,7 @@
 
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
 
-		</dependency>
 
 		<!-- Source:
 		https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->

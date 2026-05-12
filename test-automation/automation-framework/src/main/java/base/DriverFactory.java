@@ -50,7 +50,7 @@ public class DriverFactory {
                 break;
             case "edge":
             	System.setProperty("webdriver.edge.driver", "C:/Drivers/msedgedriver.exe");
-            	//WebDriverManager.edgedriver().setup();
+            	
                 webDriver= new EdgeDriver();
                 break;
             default:

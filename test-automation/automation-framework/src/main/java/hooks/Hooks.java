@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 
 // Optional Allure import; if Allure isn't on the classpath this block will be caught at runtime
 import io.qameta.allure.Allure;
+import utils.ScreenshotUtil;
 
 public class Hooks {
 
@@ -32,7 +33,7 @@ public class Hooks {
 		if (scenario != null && scenario.isFailed() && driver != null) {
 			try {
 				// capture screenshot as bytes
-				byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+				byte[] screenshot = ScreenshotUtil.captureScreenshot(driver);
 
 				// try attaching to Allure (if present)
 				try {

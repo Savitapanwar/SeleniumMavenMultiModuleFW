@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import base.BasePageClass;
+import org.testng.Assert;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -108,6 +109,7 @@ public class DP2HomePage extends BasePageClass {
 			}
 		} catch (IOException e) {
 			System.out.println("Error writing links to CSV: " + e.getMessage());
+			Assert.fail("Footers Links are missing");
 		}
 	}
 
