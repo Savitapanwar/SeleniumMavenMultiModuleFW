@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import base.BasePageClass;
+import io.qameta.allure.Allure;
+
 import org.testng.Assert;
 
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
@@ -90,6 +93,7 @@ public class DP2HomePage extends BasePageClass {
         System.out.println("Total links: " + hrefs.size());
         System.out.println("Unique links: " + uniqueLinks.size());
         System.out.println("Duplicates: " + duplicates.size() + " - " + duplicates);
+        Allure.addAttachment("Footer Links Analysis", "Total: " + hrefs.size() + ", Unique: " + uniqueLinks.size() + ", Duplicates: " + duplicates.size() + " - " + duplicates);
         
         hrefInfo.put("Unique", uniqueLinks);
         hrefInfo.put("Duplicate", duplicates);
@@ -111,6 +115,26 @@ public class DP2HomePage extends BasePageClass {
 			System.out.println("Error writing links to CSV: " + e.getMessage());
 			Assert.fail("Footers Links are missing");
 		}
+		
+
+		// Attach CSV to Allure
+		try (FileInputStream fis =
+		         new FileInputStream(fileName)) {
+
+		    Allure.addAttachment(
+		            "Footer Links Report",
+		            "text/csv",
+		            fis,
+		            ".csv"
+		    );
+
+		} catch (IOException e) {
+
+		    Assert.fail(
+		        "Unable to attach CSV to Allure report"
+		    );
+		}
+		
 	}
 
 

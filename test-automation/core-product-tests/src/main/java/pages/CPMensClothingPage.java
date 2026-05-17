@@ -32,6 +32,8 @@ public class CPMensClothingPage extends BasePageClass {
 	   // This method will contain the logic to extract jacket details and store them in a text file
 	   // We will loop through all products, check if they are jackets, and if so, extract the required details
 	   
+	   // Wait for the product grid to load before starting to extract details
+	   verifyPageTitle("Guys Clothing");
 	   boolean isEnabled = false;
 	   do {
 		   extractDetailsFromCurrentPage(productDataContainer, productTitle, productPrice, topSellerMessage);

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import base.BasePageClass;
+import io.qameta.allure.Allure;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class DP1HomePage extends BasePageClass {
 			System.out.println("------------- " );
 		    System.out.println("---------Number of slides present in ---- " + slidesCount);
 		    System.out.println("------------- " );
-			
+			Allure.addAttachment("Number of slides present in ticket menu", String.valueOf(slidesCount));
 			
 		
 	}
@@ -75,6 +76,7 @@ public class DP1HomePage extends BasePageClass {
 		System.out.println("------------- " );
 		for (Map.Entry<String, Integer> entry : slideInfo.entrySet()) {
 		    System.out.println("Title: " + entry.getKey() + " | Duration: " + entry.getValue() + " seconds");
+		    Allure.addAttachment("Slide Title: " + entry.getKey(), "Duration: " + entry.getValue() + " seconds");
 		}
 		System.out.println("------------- " );
 	}
@@ -99,6 +101,7 @@ public class DP1HomePage extends BasePageClass {
 	    Map<String, Integer> storyDurations = new LinkedHashMap<>();
 	    
 	    System.out.println("Total stories: " + stories.size());
+	    Allure.addAttachment("Total stories", String.valueOf(stories.size()));
 
 	    //pass the time of any active story
 	   By WaitForActiveStory =
@@ -113,6 +116,7 @@ public class DP1HomePage extends BasePageClass {
 
 	        String title = findElement(By.xpath("//button[@data-testid='content-hero-navigation-button' and @aria-selected='true']//div[contains(@class,'Title')]")).getText();
 	        System.out.println("Playing: " + title);
+	        Allure.addAttachment("Playing Story", title);
 
 	        long start = System.currentTimeMillis();
 
@@ -123,6 +127,7 @@ public class DP1HomePage extends BasePageClass {
 	        long duration = (end - start) / 1000;
             storyDurations.put(title, (int) duration);
 	        System.out.println("Duration of '" + title + "': " + duration + " seconds");
+	        Allure.addAttachment("Duration of " + title, duration + " seconds");
 	    }
 	    return storyDurations;
 	}
