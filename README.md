@@ -66,7 +66,7 @@ The framework follows a **three-tier modular architecture**:
 |-----------|-----------|---------|
 | **Automation Tool** | Selenium WebDriver | 4.32.0 |
 | **BDD Framework** | Cucumber-Java | 7.18.0 |
-| **Test Runner** | TestNG | 7.12.0 |
+| **Test Runner** | JUnit Platform + Cucumber | 1.10.2 |
 | **API Testing** | REST Assured | 6.0.0 |
 | **Browser Management** | WebDriverManager | 5.8.0 |
 | **Reporting** | Allure | 2.29.0 |
@@ -132,7 +132,7 @@ The framework follows a **three-tier modular architecture**:
 - Core business functionality test coverage
 
 **Key Components:**
-- `runner/` - Test execution runners (TestNG & Cucumber)
+- `runner/` - Test execution runners (JUnit Platform + Cucumber)
 - `stepDefinitions/` - Step definition implementations
 - `features/` - Gherkin feature files
 
@@ -295,9 +295,11 @@ mvn clean test -pl derived-product2-tests
 
 ### Run Specific Test Suite
 ```bash
-# Using TestNG XML
-mvn clean test -f test-automation/core-product-tests/pom.xml -Dsuites=testng.xml
+# Run the JUnit Platform Cucumber suite for core product tests
+mvn clean test -pl core-product-tests
 ```
+
+> Note: `core-product-tests` uses a JUnit Platform runner class (`RunCucumberIT`) for Cucumber execution. A legacy TestNG suite is available in `core-product-tests/testng.xml`, but JUnit is the primary runner.
 
 ### Run with Tags (Cucumber)
 ```bash
@@ -317,12 +319,26 @@ Tests are configured to run in parallel (5 threads by default). Configure in par
 
 ### Generate Allure Reports
 ```bash
-# Generate report
+# Generate report after executing tests
+mvn clean test allure:report
+
+# Generate report from an existing results folder
 mvn allure:report
 
-# Serve report locally
+# Serve report locally in a browser
 mvn allure:serve
 ```
+
+### Generate Allure Report for a Specific Module
+```bash
+# Run module tests then generate module report
+mvn clean test -pl core-product-tests allure:report
+
+# Serve module-specific report if needed
+mvn -pl core-product-tests allure:serve
+```
+
+> Note: Allure results are typically written to `target/allure-results`. Confirm your module pom or `config.properties` if you use a custom results directory.
 
 ---
 
@@ -507,7 +523,7 @@ mvn clean test allure:report -X
 - [Selenium Documentation](https://www.selenium.dev/)
 - [Cucumber Documentation](https://cucumber.io/)
 - [Allure Framework](https://docs.qameta.io/allure/)
-- [TestNG Documentation](https://testng.org/)
+- [JUnit 5 Documentation](https://junit.org/junit5/)
 - [REST Assured](https://rest-assured.io/)
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
 
@@ -518,7 +534,7 @@ mvn clean test allure:report -X
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
 │                     TEST EXECUTION LAYER                              │
-│  (TestNG Runners, Cucumber Feature Files, Test Execution)            │
+│  (JUnit Platform Runners, Cucumber Feature Files, Test Execution)     │
 └───────────────────────┬──────────────────────────────────────────────┘
                         │
 ┌───────────────────────▼──────────────────────────────────────────────┐
@@ -581,10 +597,10 @@ This project is proprietary and confidential.
 
 ## 📞 Support & Contact
 
-For questions or issues, please reach out to the QA/Test Architecture team.
+For questions or issues, please reach out to on my Linekldin.
 
 ---
 
 **Last Updated:** May 2026  
 **Framework Version:** 0.0.1-SNAPSHOT  
-**Maintainer:** QA Test Architecture Team
+**Maintainer:** Savita Panwar
