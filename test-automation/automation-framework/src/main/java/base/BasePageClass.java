@@ -38,13 +38,11 @@ public class BasePageClass {
 	}
 	public void navigateTo(String url) {
 
-			driver.get(ConfigReader.getProperty(url));
+		driver.get(ConfigReader.getProperty(url));
 
 	}
 	
 	public void clickElement(By locator) {
-
-
 			WaitUtil.waitForClickable(driver, locator).click();
 
 
@@ -194,6 +192,14 @@ public class BasePageClass {
 		return WaitUtil.waitForAttributeToUpdate(driver, findElement(locator), attributeName, expectedValue);
 	}
 	
+    public void verifyPageTitle(String expectedTitle) {
+		boolean IsMatching = WaitUtil.waitForTitleContains(driver, expectedTitle);
+		if(IsMatching) {
+			System.out.println("Page title matches expected value: " + expectedTitle);
+		} else {
+			Assert.assertEquals(IsMatching, "Page title does not match expected value.");
+		}
 		
+	}
 
 }

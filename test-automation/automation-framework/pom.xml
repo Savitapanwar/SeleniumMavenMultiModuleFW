@@ -47,13 +47,11 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-	
 	     <dependency>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-cucumber7-jvm</artifactId>

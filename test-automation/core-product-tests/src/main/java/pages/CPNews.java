@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import base.BasePageClass;
+import io.qameta.allure.Allure;
 
 public class CPNews extends BasePageClass {
 
@@ -20,6 +21,7 @@ public class CPNews extends BasePageClass {
 	public void countVideoFeedsGreaterThan3D() {
 		int totalVideoFeeds = findElements(videoFeeds).size();
 		System.out.println("Total number of video feeds: " + totalVideoFeeds);
+		Allure.step("Total number of video feeds: " + totalVideoFeeds);
 		
 		int videoFeedsGreaterThan3D = 0;
 		for (int i = 0; i < totalVideoFeeds; i++) {
@@ -31,6 +33,7 @@ public class CPNews extends BasePageClass {
 		}
 		
 		System.out.println("Number of video feeds greater than 3d: " + videoFeedsGreaterThan3D);
+		Allure.step("Number of video feeds greater than 3d: " + videoFeedsGreaterThan3D);
 	}
 	
 }
